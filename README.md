@@ -1,8 +1,8 @@
-#px-accordion
+# px-accordion
 
 ## Overview
 
-px-accordion is a Predix UI component
+The px-accordion component provides expandable and collapsible subsection headers for a page. An optional "action" icon on the right side will fire an event when pressed.
 
 ## Usage
 
@@ -31,7 +31,7 @@ Second, import the component to your application with the following tag in your 
 Finally, use the component in your application:
 
 ```
-Insert Your demo code here.
+<px-accordion header-value="Header Caption" show-action></px-accordion>
 ```
 
 <br />

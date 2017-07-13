@@ -1,0 +1,61 @@
+<!--
+    Relative paths assume component is being run from inside an app or another component, where dependencies are flat
+    siblings. When this component is run from its own repo (e.g. tests, examples), we assume the server is started with
+    'gulp serve' (or similar server setup) to enable correct finding of bower dependencies for local runs.
+-->
+<link rel="import" href="../polymer/polymer.html" />
+<link rel="import" href="../iron-collapse/iron-collapse.html">
+<link rel="import" href="../iron-resizable-behavior/iron-resizable-behavior.html">
+<link rel="import" href="../px-icon-set/px-icon-set.html" />
+<link rel="import" href="../px-icon-set/px-icon.html" />
+<link rel="import" href="css/px-accordion-styles.html">
+
+<!--
+
+### Usage
+
+    <px-accordion header-value="Header Caption"></px-accordion>
+
+### Styling
+The following custom properties are available for styling:
+
+Custom property | Description
+:----------------|:-------------
+--px-headings-heading-subsection-color | Text color for the accordion header
+--px-headings-heading-subsection-background | Background color for the accordion header
+
+@element px-accordion
+@blurb renders a accordion component
+@homepage index.html
+@demo index.html
+-->
+
+<dom-module id="px-accordion">
+  <template>
+    <style include="px-accordion-styles"></style>
+    <section class="accordion__container">
+      <div class$="accordion__header heading--subsection flex flex--row flex--justify u-p-- {{_getClass(disabled)}}" on-tap="toggle">
+        <div>
+          <template is="dom-if" if="{{!disabled}}">
+            <px-icon class="accordion__icon actionable--action" icon="{{_expandCollapseIcon}}"></px-icon>
+          </template>
+          <span>{{headerValue}}</span>
+        </div>
+          <div>
+            <span class="accordion__status">{{status}}</span>
+            <template is="dom-if" if="{{!disabled}}">
+              <template is="dom-if" if="{{showAction}}">
+                <span on-tap="_onEditIconClick"><px-icon id="actionIcon" class="accordion__icon actionable--action" icon="{{icons.action}}"></px-icon></span>
+              </template>
+            </template>
+          </div>
+      </div>
+      <iron-collapse id="collapse">
+        <div class="accordion__body u-p--">
+          <content></content>
+        </div>
+      </iron-collapse>
+    </section>
+  </template>
+</dom-module>
+<script src="dist/px-accordion.js"></script>

@@ -1,0 +1,26 @@
+<!--
+    Relative paths assume component is being run from inside an app or another component, where dependencies are flat
+    siblings. When this component is run from its own repo (e.g. tests, examples), we assume the server is started with
+    'gulp serve' (or similar server setup) to enable correct finding of bower dependencies for local runs.
+-->
+<link rel="import" href="../polymer/polymer.html" />
+<link rel="import" href="css/px-accordion-styles.html">
+<!--
+
+@blurb renders a accordion component
+@homepage index.html
+@demo index.html
+-->
+
+<dom-module id="px-accordion-group">
+  <template>
+    <style include="px-accordion-styles"></style>
+    <div class="accordion__expand__collapse text--right">
+      <span data-val="expand" class$="accordion__expand {{expandClass}}" on-tap="_expandCollapseListener">Expand All</span>
+      <span> | </span>
+      <span data-val="collapse" class$="accordion__collapse {{collapseClass}}" on-tap="_expandCollapseListener">Collapse All</span>
+    </div>
+    <content id="accordions"></content>
+  </template>
+</dom-module>
+<script src="dist/px-accordion-group.js"></script>

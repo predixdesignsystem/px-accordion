@@ -1,0 +1,59 @@
+/*
+ * Copyright (c) 2014 GE Global Research. All rights reserved.
+ *
+ * The copyright to the computer software herein is the property of
+ * GE Global Research. The software may be used and/or copied only
+ * with the written permission of GE Global Research or in accordance
+ * with the terms and conditions stipulated in the agreement/contract
+ * under which the software has been supplied.
+ */
+
+// Settings
+
+// Tools
+
+// Generic
+@import "px-normalize-design/_generic.normalize.scss";
+@import "px-box-sizing-design/_generic.box-sizing.scss";
+@import "px-helpers-design/_generic.helpers.scss";
+
+// Base
+@import "px-flexbox-design/_base.flexbox.scss";
+@import "px-headings-design/_base.headings.scss";
+
+// Meta
+
+// Objects
+@import "px-actionable-text-icons-design/_objects.actionable.scss";
+
+// Component
+.accordion__header {
+  margin-bottom: 0.3333rem;
+  cursor: pointer;
+  &.disabled {
+    cursor: not-allowed;
+  }
+}
+
+.accordion__expand__collapse {
+  margin-bottom: 1.5rem;
+}
+
+.accordion__icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.accordion__status {
+  margin-right: 1rem;
+  text-transform: none;
+}
+
+.accordion__body {
+  margin: 0;
+  overflow: auto;
+}
+
+// Trumps
+$inuit-enable-paddings--tiny: true;
+@import "px-spacing-design/_trumps.spacing.scss";

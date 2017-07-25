@@ -4,7 +4,7 @@
        * Icons to be used by the accordion component.
        * You should specify a valid iron icon for 'more' and 'less', at least,
        * plus an additional icon for 'action' if `showAction` is true.
-       */icons:{type:Object,value:function value(){return{'more':'px-utl:chevron-right','less':'px-utl:chevron','action':'px-utl:edit'}},observer:'_iconsChanged'},/**
+       */icons:{type:Object,value:function value(){return{'more':'fa:fa-angle-right','less':'fa:fa-angle-down','action':'fa:fa-pencil'}},observer:'_iconsChanged'},/**
        * Flag indicating whether the accordion should be disabled.
        */disabled:{type:Boolean,value:false,reflect:true},/**
        * Flag indicating whether the 'action' icon should be shown on the right hand side.

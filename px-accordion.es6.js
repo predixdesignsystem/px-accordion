@@ -21,7 +21,7 @@
       icons: {
         type: Object,
         value: function() {
-          return { 'more': 'px-utl:chevron-right', 'less': 'px-utl:chevron', 'action': 'px-utl:edit' };
+          return { 'more': 'fa:fa-angle-right', 'less': 'fa:fa-angle-down', 'action': 'fa:fa-pencil' };
         },
         observer: '_iconsChanged'
       },

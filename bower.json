@@ -1,6 +1,6 @@
 {
   "name": "px-accordion",
-  "version": "1.0.1",
+  "version": "0.1.0",
   "main": [
     "px-accordion.html"
   ],
@@ -29,14 +29,14 @@
     "iron-collapse": "^2.0.0"
   },
   "devDependencies": {
-    "px-theme": "^3.0.0",
-    "px-layout-design": "^1.0.0",
-    "px-box-design": "^1.0.0",
-    "px-starter-kit-design": "^1.0.0",
-    "px-demo": "^2.0.0",
-    "px-actionable-text-icons-design": "^2.0.0",
-    "px-icon-set": "^2.0.0",
-    "px-headings-design": "^1.0.0"
+    "px-theme": "^2.0.0",
+    "px-layout-design": "^0.4.6",
+    "px-box-design": "^0.4.4",
+    "px-starter-kit-design": "^0.7.7",
+    "px-demo": "^1.5.10",
+    "px-actionable-design": "^1.1.8",
+    "px-polymer-font-awesome": "^1.1.5",
+    "px-headings-design": "^0.3.5"
   },
   "resolutions": {
     "webcomponentsjs": "^0.7.24"

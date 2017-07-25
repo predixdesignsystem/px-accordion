@@ -4,4 +4,8 @@ v1.0.1
 
 v1.0.0
 ==================
-* Initial release
+* initial release
+
+v0.1.0
+==================
+* retroactive pre-redesign version of this component

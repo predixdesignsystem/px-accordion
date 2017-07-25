@@ -6,8 +6,7 @@
 <link rel="import" href="../polymer/polymer.html" />
 <link rel="import" href="../iron-collapse/iron-collapse.html">
 <link rel="import" href="../iron-resizable-behavior/iron-resizable-behavior.html">
-<link rel="import" href="../px-icon-set/px-icon-set.html" />
-<link rel="import" href="../px-icon-set/px-icon.html" />
+<link rel="import" href="../px-polymer-font-awesome/px-polymer-font-awesome.html" />
 <link rel="import" href="css/px-accordion-styles.html">
 
 <!--
@@ -37,7 +36,7 @@ Custom property | Description
       <div class$="accordion__header heading--subsection flex flex--row flex--justify u-p-- {{_getClass(disabled)}}" on-tap="toggle">
         <div>
           <template is="dom-if" if="{{!disabled}}">
-            <px-icon class="accordion__icon actionable--action" icon="{{_expandCollapseIcon}}"></px-icon>
+            <iron-icon class="accordion__icon actionable--action" icon="{{_expandCollapseIcon}}"></iron-icon>
           </template>
           <span>{{headerValue}}</span>
         </div>
@@ -45,7 +44,7 @@ Custom property | Description
             <span class="accordion__status">{{status}}</span>
             <template is="dom-if" if="{{!disabled}}">
               <template is="dom-if" if="{{showAction}}">
-                <span on-tap="_onEditIconClick"><px-icon id="actionIcon" class="accordion__icon actionable--action" icon="{{icons.action}}"></px-icon></span>
+                <span on-tap="_onEditIconClick"><iron-icon id="actionIcon" class="accordion__icon actionable--action" icon="{{icons.action}}"></iron-icon></span>
               </template>
             </template>
           </div>

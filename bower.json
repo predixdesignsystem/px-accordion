@@ -22,7 +22,8 @@
     "README.md",
     ".jshintrc",
     ".editorconfig",
-    "*.enc"
+    "*.enc",
+    "package.json"
   ],
   "dependencies": {
     "polymer": "^1.9.0",

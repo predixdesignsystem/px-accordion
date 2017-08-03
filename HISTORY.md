@@ -1,3 +1,7 @@
+v1.0.3
+==================
+* fix alignment
+
 v1.0.2
 ==================
 * remove placehold.it from demo

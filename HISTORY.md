@@ -1,3 +1,7 @@
+v1.0.5
+==================
+* run time demo theming
+
 v1.0.4
 ==================
 * fix demo naming

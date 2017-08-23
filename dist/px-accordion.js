@@ -27,5 +27,5 @@
        * e.target will contain information about the specific accordion
        * whereas e.detail will contain a reference to the original tap event.
        * @event px-accordion-action-clicked
-       */this.fire('px-accordion-action-clicked',e)},_getClass:function _getClass(disabled){return disabled?'disabled':''}})})();
+       */this.fire('px-accordion-action-clicked',e)}})})();
 //# sourceMappingURL=px-accordion.js.map

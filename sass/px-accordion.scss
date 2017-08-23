@@ -30,7 +30,7 @@
 .accordion__header {
   margin-bottom: 0.3333rem;
   cursor: pointer;
-  &.disabled {
+  &[disabled] {
     cursor: not-allowed;
   }
 }

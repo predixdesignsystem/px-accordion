@@ -1,3 +1,7 @@
+v1.0.7
+==================
+* remove getClass
+
 v1.0.6
 ==================
 * runtime theming for demo

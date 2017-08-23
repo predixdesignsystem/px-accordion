@@ -96,9 +96,6 @@
        * @event px-accordion-action-clicked
        */
       this.fire('px-accordion-action-clicked', e);
-    },
-    _getClass: function(disabled) {
-      return disabled ? 'disabled' : '';
     }
 
   });

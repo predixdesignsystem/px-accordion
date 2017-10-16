@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Example: px-accordion</title>
+
+  <!--
+      Fast bootstrapping of the webcomponents-lite library. Only loads the library
+      if the browser doesn't natively support web components.
+  -->
+  <script type="text/javascript">
+  (function() {
+    'use strict';
+
+    var onload = function() {
+      // For native Imports, manually fire WebComponentsReady so user code
+      // can use the same code path for native and polyfill'd imports.
+      if (!window.HTMLImports) {
+        document.dispatchEvent(
+          new CustomEvent('WebComponentsReady', {bubbles: true})
+        );
+      }
+    };
+
+    var webComponentsSupported = (
+      'registerElement' in document && 'import' in document.createElement('link') && 'content' in document.createElement('template')
+    );
+
+    if (!webComponentsSupported) {
+      var script = document.createElement('script');
+      script.async = true;
+      script.src = '../webcomponentsjs/webcomponents-lite.min.js';
+      script.onload = onload;
+      document.head.appendChild(script);
+    } else {
+      onload();
+    }
+  })();
+  </script>
+  <!-- Import Polymer -->
+  <link rel="import" href="../../polymer/polymer.html"/>
+  <!-- Import default Predix Design System theme -->
+  <link rel="import" href="../../px-theme/px-theme-styles.html"/>
+  <custom-style>
+    <style is="custom-style" include="px-theme-styles"></style>
+  </custom-style>
+  <!--Import px-accordion component -->
+  <link rel="import" href="../px-accordion.html"/>
+</head>
+<body>
+  <px-accordion
+      icons='{"more":"px-utl:chevron-right","less":"px-utl:chevron","action":"px-utl:edit"}'
+      header-value="Example Accordion"
+      status="Last Updated: 3 Days Ago">
+  <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus quibusdam, tenetur delectus iste eaque unde vel esse dolore cum nostrum tempore nam optio hic aliquam, ullam aliquid atque ab facere?</span>
+  </px-accordion>
+</body>
+</html>

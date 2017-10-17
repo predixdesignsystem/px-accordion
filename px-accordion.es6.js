@@ -5,6 +5,12 @@
     is: 'px-accordion',
 
     properties: {
+      /**
+       * The text to place in the header of the accordion
+       */
+      headerValue: {
+        type: String
+      },
 
       /**
        * The icon to use in the accordion, either 'more' or 'less' depending on current state.

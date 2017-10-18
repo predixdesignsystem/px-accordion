@@ -61,30 +61,7 @@ gulp.task('sass', function() {
     .pipe(browserSync.stream({match: 'css/*.html'}));
 });
 
-// Globbing pattern to find ES6 source files that need to be transpiled
-const ES6_SRC = './*.es6.js';
-// Output directory for transpiled files
-const ES5_DEST = './dist';
-
-gulp.task('transpile', function() {
-  return gulp.src(ES6_SRC)
-    .pipe(cache('transpiling'))
-    .pipe(sourcemaps.init())
-    .pipe(babel())
-    .on('error', function(err) {
-      console.error(err);
-      this.emit('end');
-    })
-    .pipe(rename(path => {
-      path.basename = path.basename.replace('.es6', '');
-      console.log(`Transpiling ${path.basename}.es6.js -> dist/${path.basename}.js`)
-    }))
-    .pipe(sourcemaps.write('.'))
-    .pipe(gulp.dest(ES5_DEST));
-});
-
 gulp.task('watch', function() {
-  gulp.watch(ES6_SRC, ['transpile']);
   gulp.watch(['sass/*.scss'], ['sass']);
 });
 
@@ -98,9 +75,8 @@ gulp.task('serve', function() {
     server: ['./', 'bower_components'],
   });
 
-  gulp.watch(ES6_SRC, ['transpile']);
   gulp.watch(['sass/*.scss'], ['sass']);
-  gulp.watch(['css/*-styles.html', '*.html', `${ES5_DEST}/*.js`, 'demo/*.html']).on('change', browserSync.reload);
+  gulp.watch(['css/*-styles.html', '*.html', 'demo/*.html']).on('change', browserSync.reload);
 });
 
 gulp.task('bump:patch', function(){
@@ -122,5 +98,5 @@ gulp.task('bump:major', function(){
 });
 
 gulp.task('default', function(callback) {
-  gulpSequence('clean', 'sass', 'transpile')(callback);
+  gulpSequence('clean', 'sass')(callback);
 });

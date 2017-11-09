@@ -16,9 +16,9 @@
   <template>
     <style include="px-accordion-styles"></style>
     <div class="accordion__expand__collapse text--right">
-      <span data-val="expand" class$="accordion__expand {{expandClass}}" on-tap="_expandCollapseListener">Expand All</span>
+      <span data-val="expand" class$="accordion__expand {{_getBtnClassName(_expandAllActive)}}" on-tap="_handleExpandAll">Expand All</span>
       <span> | </span>
-      <span data-val="collapse" class$="accordion__collapse {{collapseClass}}" on-tap="_expandCollapseListener">Collapse All</span>
+      <span data-val="collapse" class$="accordion__collapse {{_getBtnClassName(_collapseAllActive)}}" on-tap="_handleCollapseAll">Collapse All</span>
     </div>
     <slot id="accordions"></slot>
   </template>
@@ -27,57 +27,81 @@
       is: 'px-accordion-group',
 
       properties: {
-        _expandCollapse: {
-          type: String,
-          value: 'collapse',
-          observer: '_onExpandCollapse'
+        _expandAllActive: {
+          type: Boolean,
+          value: false
         },
-        collapseClass: {
-          type: String,
-          value: "actionable--disabled"
+        _collapseAllActive: {
+          type: Boolean,
+          value: false
         },
-        expandClass: {
-          type: String,
-          value: "actionable"
+        _accordions: {
+          type: Array,
+          value: null,
+          observer: '_updateAccordionState'
         }
       },
 
-      ready: function() {
-        var boundHandler = this._getAccordionDefinitions.bind(this);
+      listeners: {
+        'px-accordion-opened-state-changed' : '_updateAccordionState'
+      },
+
+      attached: function() {
+        var boundHandler = this._getChildAccordions.bind(this);
         this._observer = Polymer.dom(this.$.accordions).observeNodes(boundHandler);
       },
 
-      _onExpandCollapse: function(val) {
-        if (val == "collapse") {
-          this.collapseClass = "actionable--disabled";
-          this.expandClass = "actionable";
-        }
-        else {
-          this.collapseClass = "actionable";
-          this.expandClass = "actionable--disabled";
+      detached: function() {
+        Polymer.dom(this.$.accordions).unobserveNodes(this._observer);
+        this._accordions = null;
+      },
+
+      _getBtnClassName: function(active) {
+        return active ? 'actionable' : 'actionable--disabled';
+      },
+
+      _getChildAccordions: function() {
+        this.debounce('get-child-accordions', function() {
+          this._accordions = this.queryAllEffectiveChildren('px-accordion');
+        }, 1);
+      },
+
+      _updateAccordionState: function() {
+        this.debounce('update-accordion-state', function() {
+          if (this._accordions && Array.isArray(this._accordions) && this._accordions.length > 0) {
+            let anyExpanded = false;
+            let anyCollapsed = false;
+            for (let i=0; i<this._accordions.length; i++) {
+              if (anyExpanded && anyCollapsed) {
+                break;
+              }
+              if (this._accordions[i].opened === true) {
+                anyExpanded = true;
+              }
+              if (this._accordions[i].opened === false) {
+                anyCollapsed = true;
+              }
+            }
+            this._expandAllActive = anyCollapsed;
+            this._collapseAllActive = anyExpanded;
+          }
+        }, 1);
+      },
+
+      _handleExpandAll: function() {
+        if (this._accordions && Array.isArray(this._accordions) && this._accordions.length > 0) {
+          for (let i=0; i<this._accordions.length; i++) {
+            this._accordions[i].opened = true;
+          }
         }
       },
 
-      _expandCollapseListener: function(e) {
-        this.set('_expandCollapse', e.currentTarget.dataset.val);
-        if (e.currentTarget.dataset.val === 'expand') {
-          for (var i = 0; i < this.accordionsDefined.length; i++) {
-            this.accordionsDefined[i].$$('iron-collapse').show();
-            this.accordionsDefined[i].set('_expandCollapseIcon', this.accordionsDefined[i].icons.less);
+      _handleCollapseAll: function() {
+        if (this._accordions && Array.isArray(this._accordions) && this._accordions.length > 0) {
+          for (let i=0; i<this._accordions.length; i++) {
+            this._accordions[i].opened = false;
           }
         }
-        else {
-          for (var i = 0; i < this.accordionsDefined.length; i++) {
-            this.accordionsDefined[i].$$('iron-collapse').hide();
-            this.accordionsDefined[i].set('_expandCollapseIcon', this.accordionsDefined[i].icons.more);
-          }
-        }
-      },
-
-      _getAccordionDefinitions: function(accordionSet) {
-        this.accordionsDefined = accordionSet.addedNodes.filter(function(node) {
-          return (node.nodeType === Node.ELEMENT_NODE && node.nodeName === 'PX-ACCORDION');
-        });
       }
     });
   </script>

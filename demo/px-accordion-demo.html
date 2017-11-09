@@ -31,16 +31,16 @@
     <!-- Interactive -->
     <px-demo-interactive>
       <!-- Configs -->
-      <px-demo-configs configs="[[configs]]" props="{{props}}" chosen-config="{{chosenConfig}}"></px-demo-configs>
+      <px-demo-configs slot="px-demo-configs" configs="[[configs]]" props="{{props}}" chosen-config="{{chosenConfig}}"></px-demo-configs>
 
       <!-- Props -->
-      <px-demo-props props="{{props}}" config="[[chosenConfig]]"></px-demo-props>
+      <px-demo-props slot="px-demo-props" props="{{props}}" config="[[chosenConfig]]"></px-demo-props>
 
       <!-- Code Editor -->
-      <px-demo-code-editor props="{{props}}" config="[[chosenConfig]]"></px-demo-code-editor>
+      <px-demo-code-editor slot="px-demo-code-editor" props="{{props}}" config="[[chosenConfig]]"></px-demo-code-editor>
 
       <!-- Component ---------------------------------------------------------->
-      <px-demo-component style="width:100%;">
+      <px-demo-component slot="px-demo-component" style="width:100%;">
         <px-accordion-group>
         <px-accordion header-value="{{props.headerValue.value}}" show-action="{{props.showAction.value}}" status="{{props.status.value}}" icons="{{props.icons.value}}" disabled="{{props.disabled.value}}">
           Accordion content goes here.
@@ -54,6 +54,7 @@
       <!-- END Component ------------------------------------------------------>
 
       <px-demo-component-snippet
+          slot="px-demo-component-snippet"
           element-properties="{{props}}"
           element-name="px-accordion">
       </px-demo-component-snippet>

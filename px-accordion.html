@@ -34,23 +34,23 @@ Custom property | Description
   <template>
     <style include="px-accordion-styles"></style>
     <section class="accordion__container">
-      <div class="accordion__header heading--subsection flex flex--row flex--justify u-p--" disabled$="{{disabled}}" on-tap="toggle">
+      <div id="header" class="accordion__header heading--subsection flex flex--row flex--justify u-p--" disabled$="[[disabled]]" on-tap="_toggleHandler">
         <div class="flex flex--middle">
-          <template is="dom-if" if="{{!disabled}}">
-            <px-icon class="accordion__icon actionable--action" icon="{{_expandCollapseIcon}}"></px-icon>
+          <template is="dom-if" if="[[!disabled]]">
+            <px-icon class="accordion__icon actionable--action" icon="[[_expandCollapseIcon]]"></px-icon>
           </template>
-          <span>{{headerValue}}</span>
+          <span id="headerValue">[[headerValue]]</span>
         </div>
         <div class="flex flex--middle">
-          <span class="accordion__status">{{status}}</span>
-          <template is="dom-if" if="{{!disabled}}">
-            <template is="dom-if" if="{{showAction}}">
-              <px-icon id="actionIcon" class="accordion__icon actionable--action" icon="{{icons.action}}" on-tap="_onEditIconClick"></px-icon>
+          <span class="accordion__status">[[status]]</span>
+          <template is="dom-if" if="[[!disabled]]">
+            <template is="dom-if" if="[[showAction]]">
+              <px-icon id="actionIcon" class="accordion__icon actionable--action" icon="[[icons.action]]" on-tap="_onEditIconClick"></px-icon>
             </template>
           </template>
         </div>
       </div>
-      <iron-collapse id="collapse">
+      <iron-collapse id="collapse" opened="{{opened}}">
         <div class="accordion__body u-p--">
           <slot></slot>
         </div>
@@ -70,13 +70,6 @@ Custom property | Description
         },
 
         /**
-         * The icon to use in the accordion, either 'more' or 'less' depending on current state.
-         */
-        _expandCollapseIcon: {
-          type: String
-        },
-
-        /**
          * Icons to be used by the accordion component.
          * You should specify a valid iron icon for 'more' and 'less', at least,
          * plus an additional icon for 'action' if `showAction` is true.
@@ -84,9 +77,12 @@ Custom property | Description
         icons: {
           type: Object,
           value: function() {
-            return { 'more': 'px-utl:chevron-right', 'less': 'px-utl:chevron', 'action': 'px-utl:edit' };
-          },
-          observer: '_iconsChanged'
+            return {
+              'more': 'px-utl:chevron-right',
+              'less': 'px-utl:chevron',
+              'action': 'px-utl:edit'
+            };
+          }
         },
 
         /**
@@ -95,7 +91,7 @@ Custom property | Description
         disabled: {
           type: Boolean,
           value: false,
-          reflect: true
+          reflectToAttribute: true
         },
 
         /**
@@ -112,54 +108,112 @@ Custom property | Description
         status: {
           type: String,
           value: ''
-        }
+        },
 
+        /**
+         * If `true` the accordion is opened. If `false` it is closed. Use to
+         * observe the user opening/closing the accordion, or set to programatically
+         * change the accordion state.
+         */
+        opened: {
+          type: Boolean,
+          value: false,
+          notify: true,
+          observer: '_handleOpenedChanged'
+        },
+
+        /**
+         * The icon to use in the accordion, either 'more' or 'less' depending on current state.
+         */
+        _expandCollapseIcon: {
+          type: String,
+          computed: '_getExpandCollapseIcon(opened, icons.more, icons.less)'
+        },
       },
 
-      _iconsChanged: function() {
-        this._expandCollapseIcon = this.$.collapse.opened ? this.icons.less : this.icons.more;
+      _getExpandCollapseIcon: function(opened, iconMore, iconLess) {
+        if (typeof opened === 'boolean' && typeof iconMore === 'string' && typeof iconLess === 'string') {
+          return opened ? iconLess : iconMore;
+        }
       },
 
       /**
        * Shows or hides the accordion content.
        */
-      toggle: function(e) {
-        if(this.disabled) return;
-        Polymer.dom(this.root).querySelector('iron-collapse').toggle();
-        if (this._expandCollapseIcon === this.icons.more) {
-          this.set('_expandCollapseIcon', this.icons.less);
-          this.fire('px-accordion-expanded', e);
-          /**
-           * Event fired when the accordion is expanded.
-           * e.target will contain information about the specific accordion
-           * whereas e.detail will contain a reference to the original tap event.
-           * @event px-accordion-expanded
-           */
-        }
-        else {
-          this.set('_expandCollapseIcon', this.icons.more);
-          this.fire('px-accordion-collapsed', e);
-          /**
-           * Event fired when the accordion is collapsed.
-           * e.target will contain information about the specific accordion
-           * whereas e.detail will contain a reference to the original tap event.
-           * @event px-accordion-collapsed
-           */
-        }
-
+      toggle: function() {
+        if (this.disabled) return;
+        this.opened = !this.opened;
       },
+
+      /**
+       * Internal toggle handler called when the user interacts with the
+       * toggle icon. Toggles the accordion and sends an event that includes
+       * the source DOM event that triggered the toggle.
+       *
+       * @param  {Event} e - Source tap/click event that triggered this handler
+       */
+      _toggleHandler: function(e) {
+        if (this.disabled) return;
+        this.opened = !this.opened;
+
+        if (this.opened === true) {
+          this.fire('px-accordion-expanded', e);
+        }
+        if (this.opened === false) {
+          this.fire('px-accordion-collapsed', e);
+        }
+      },
+      /**
+       * Fired when the accordion is expanded by user interaction. This event is
+       * not fired when the accordion is expanded through data-binding by
+       * setting the `opened` property to true.
+       *
+       * e.target will be a reference to the accordion that was interacted with,
+       * and e.detail will be a reference to the original DOM tap/click event.
+       *
+       * @event px-accordion-expanded
+       */
+      /**
+       * Fired when the accordion is collapsed by user interaction. This event is
+       * not fired when the accordion is collapsed through data-binding by
+       * setting the `opened` property to false.
+       *
+       * e.target will be a reference to the accordion that was interacted with,
+       * and e.detail will be a reference to the original DOM tap/click event.
+       *
+       * @event px-accordion-collapsed
+       */
+
+      _handleOpenedChanged: function(openedState) {
+        if (typeof openedState === 'boolean') {
+          this.fire('px-accordion-opened-state-changed', { value: openedState });
+        }
+      },
+      /**
+       * Fired when the accordion's opened state is changed, either by user
+       * interaction or programatically via. its `opened` API. To only listen
+       * for accordion state changes triggered by user interaction, use
+       * `px-accordion-expanded` and `px-accordion-collapsed` events.
+       *
+       * e.detail.value will be a boolean, `true` if the accordion is opened,
+       * `false` if the accordion is closed.
+       *
+       * @event px-accordion-opened-state-changed
+       */
 
       _onEditIconClick: function(e) {
         e.preventDefault();
         e.stopPropagation();
-        /**
-         * Event fired when the action icon is clicked.
-         * e.target will contain information about the specific accordion
-         * whereas e.detail will contain a reference to the original tap event.
-         * @event px-accordion-action-clicked
-         */
         this.fire('px-accordion-action-clicked', e);
       }
+      /**
+       * Event fired when the accordion action icon is clicked.
+       *
+       * e.target will be a reference to the accordion that was interacted with,
+       * and e.detail will be a reference to the original DOM tap/click event.
+       *
+       * @event px-accordion-action-clicked
+       */
     });
   </script>
 </dom-module>

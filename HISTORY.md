@@ -1,3 +1,9 @@
+v1.1.0
+==================
+* Polymer 1.x/2.x hybrid element support
+* Add the `opened` property to px-accordion to programmatically open/close the accordion
+* Upgrade px-accordion-group to activate Open All/Collapse All buttons when any of the accordions could be opened/collapsed
+
 v1.0.8
 ==================
 * add device flags

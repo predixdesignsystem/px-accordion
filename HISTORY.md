@@ -1,3 +1,8 @@
+v1.1.1
+==================
+* add app-localize-behavior to accordion group element
+* update demo to accurately reflect grouping, add example usage
+
 v1.1.0
 ==================
 * Polymer 1.x/2.x hybrid element support

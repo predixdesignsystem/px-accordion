@@ -4,7 +4,8 @@
     'gulp serve' (or similar server setup) to enable correct finding of bower dependencies for local runs.
 -->
 <link rel="import" href="../polymer/polymer.html" />
-<link rel="import" href="css/px-accordion-styles.html">
+<link rel="import" href="css/px-accordion-styles.html" />
+<link rel="import" href="../app-localize-behavior/app-localize-behavior.html" />
 <!--
 
 @blurb renders a accordion component
@@ -16,9 +17,9 @@
   <template>
     <style include="px-accordion-styles"></style>
     <div class="accordion__expand__collapse text--right">
-      <span data-val="expand" class$="accordion__expand {{_getBtnClassName(_expandAllActive)}}" on-tap="_handleExpandAll">Expand All</span>
+      <span data-val="expand" class$="accordion__expand {{_getBtnClassName(_expandAllActive)}}" on-tap="_handleExpandAll">{{localize('Expand All')}}</span>
       <span> | </span>
-      <span data-val="collapse" class$="accordion__collapse {{_getBtnClassName(_collapseAllActive)}}" on-tap="_handleCollapseAll">Collapse All</span>
+      <span data-val="collapse" class$="accordion__collapse {{_getBtnClassName(_collapseAllActive)}}" on-tap="_handleCollapseAll">{{localize('Collapse All')}}</span>
     </div>
     <slot id="accordions"></slot>
   </template>
@@ -26,7 +27,39 @@
     Polymer({
       is: 'px-accordion-group',
 
+      behaviors: [ Polymer.AppLocalizeBehavior ],
+
       properties: {
+        /**
+         * A valid IETF language tag as a string that `app-localize-behavior` will
+         * use to localize this component.
+         *
+         * See https://github.com/PolymerElements/app-localize-behavior for API
+         * documentation and more information.
+         */
+        language: {
+          type: String,
+          value: 'en'
+        },
+        /**
+        * Use the key for localization if value for  language is missing. Should
+        * always be true for our components.
+        */
+        useKeyIfMissing: {
+          type: Boolean,
+          value: true
+        },
+        resources: {
+          type: Object,
+          value: function() {
+            return {
+              'en': {
+                "Expand All": "Expand All",
+                "Collapse All": "Collapse All"
+              }
+            }
+          }
+        },
         _expandAllActive: {
           type: Boolean,
           value: false

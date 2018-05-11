@@ -13,11 +13,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 77,
+              "line": 93,
               "column": 8
             },
             "end": {
-              "line": 79,
+              "line": 95,
               "column": 9
             }
           },
@@ -32,11 +32,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 86,
+              "line": 102,
               "column": 8
             },
             "end": {
-              "line": 95,
+              "line": 111,
               "column": 9
             }
           },
@@ -52,11 +52,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 100,
+              "line": 116,
               "column": 8
             },
             "end": {
-              "line": 104,
+              "line": 120,
               "column": 9
             }
           },
@@ -72,11 +72,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 109,
+              "line": 125,
               "column": 8
             },
             "end": {
-              "line": 112,
+              "line": 128,
               "column": 9
             }
           },
@@ -92,11 +92,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 117,
+              "line": 133,
               "column": 8
             },
             "end": {
-              "line": 120,
+              "line": 136,
               "column": 9
             }
           },
@@ -112,11 +112,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 127,
+              "line": 143,
               "column": 8
             },
             "end": {
-              "line": 132,
+              "line": 148,
               "column": 9
             }
           },
@@ -135,11 +135,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 137,
+              "line": 153,
               "column": 8
             },
             "end": {
-              "line": 140,
+              "line": 156,
               "column": 9
             }
           },
@@ -157,11 +157,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 143,
+              "line": 159,
               "column": 6
             },
             "end": {
-              "line": 147,
+              "line": 163,
               "column": 7
             }
           },
@@ -184,11 +184,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 152,
+              "line": 168,
               "column": 6
             },
             "end": {
-              "line": 155,
+              "line": 171,
               "column": 7
             }
           },
@@ -201,11 +201,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 164,
+              "line": 180,
               "column": 6
             },
             "end": {
-              "line": 174,
+              "line": 190,
               "column": 7
             }
           },
@@ -224,11 +224,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 196,
+              "line": 212,
               "column": 6
             },
             "end": {
-              "line": 200,
+              "line": 216,
               "column": 7
             }
           },
@@ -245,11 +245,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 213,
+              "line": 229,
               "column": 6
             },
             "end": {
-              "line": 217,
+              "line": 233,
               "column": 7
             }
           },
@@ -271,11 +271,11 @@
       "metadata": {},
       "sourceRange": {
         "start": {
-          "line": 70,
+          "line": 86,
           "column": 12
         },
         "end": {
-          "line": 226,
+          "line": 242,
           "column": 5
         }
       },
@@ -287,11 +287,11 @@
           "description": "The text to place in the header of the accordion",
           "sourceRange": {
             "start": {
-              "line": 77,
+              "line": 93,
               "column": 8
             },
             "end": {
-              "line": 79,
+              "line": 95,
               "column": 9
             }
           },
@@ -303,11 +303,11 @@
           "description": "Icons to be used by the accordion component.\nYou should specify a valid iron icon for 'more' and 'less', at least,\nplus an additional icon for 'action' if `showAction` is true.",
           "sourceRange": {
             "start": {
-              "line": 86,
+              "line": 102,
               "column": 8
             },
             "end": {
-              "line": 95,
+              "line": 111,
               "column": 9
             }
           },
@@ -319,11 +319,11 @@
           "description": "Flag indicating whether the accordion should be disabled.",
           "sourceRange": {
             "start": {
-              "line": 100,
+              "line": 116,
               "column": 8
             },
             "end": {
-              "line": 104,
+              "line": 120,
               "column": 9
             }
           },
@@ -335,11 +335,11 @@
           "description": "Flag indicating whether the 'action' icon should be shown on the right hand side.",
           "sourceRange": {
             "start": {
-              "line": 109,
+              "line": 125,
               "column": 8
             },
             "end": {
-              "line": 112,
+              "line": 128,
               "column": 9
             }
           },
@@ -351,11 +351,11 @@
           "description": "String that will appear in the right hand side of the accordion.",
           "sourceRange": {
             "start": {
-              "line": 117,
+              "line": 133,
               "column": 8
             },
             "end": {
-              "line": 120,
+              "line": 136,
               "column": 9
             }
           },
@@ -367,11 +367,11 @@
           "description": "If `true` the accordion is opened. If `false` it is closed. Use to\nobserve the user opening/closing the accordion, or set to programatically\nchange the accordion state.",
           "sourceRange": {
             "start": {
-              "line": 127,
+              "line": 143,
               "column": 8
             },
             "end": {
-              "line": 132,
+              "line": 148,
               "column": 9
             }
           },
@@ -422,11 +422,11 @@
           "range": {
             "file": "px-accordion.html",
             "start": {
-              "line": 64,
+              "line": 80,
               "column": 10
             },
             "end": {
-              "line": 64,
+              "line": 80,
               "column": 23
             }
           }

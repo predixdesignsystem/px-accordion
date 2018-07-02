@@ -1,3 +1,7 @@
+v1.1.3
+==================
+* Make accordion__body's box-sizing be `border-box` if `$inuit-global-border-box` is `true`
+
 v1.1.2
 ==================
 * Fix demo for IE.

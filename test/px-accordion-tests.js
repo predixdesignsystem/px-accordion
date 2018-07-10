@@ -28,6 +28,11 @@ describe('px-accordion', () => {
     assert(headerValue.textContent.trim() === 'Header');
   });
 
+  it('display multiple icons', () => {
+    const header = Polymer.dom(accordion.root).querySelector('#header');
+    assert(header.querySelectorAll('#actionIcon').length === 2);
+  });
+
   it('distributes the content passed into its default slot', () => {
     const span = accordion.queryEffectiveChildren('span');
     assert(span instanceof HTMLElement);

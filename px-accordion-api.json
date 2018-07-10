@@ -43,7 +43,7 @@
           "metadata": {
             "polymer": {}
           },
-          "defaultValue": "{\"more\":\"px-utl:chevron-right\",\"less\":\"px-utl:chevron\",\"action\":\"px-utl:edit\"}"
+          "defaultValue": "{\"more\":\"px-utl:chevron-right\",\"less\":\"px-utl:chevron\",\"action\":[{\"icon:\"{\"px-utl:edit\"}]}"
         },
         {
           "name": "disabled",
@@ -240,7 +240,7 @@
           ]
         },
         {
-          "name": "_onEditIconClick",
+          "name": "_onIconClick",
           "description": "",
           "privacy": "protected",
           "sourceRange": {

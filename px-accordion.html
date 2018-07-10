@@ -71,7 +71,11 @@ Custom property | Description
           <span class="accordion__status">[[status]]</span>
           <template is="dom-if" if="[[!disabled]]">
             <template is="dom-if" if="[[showAction]]">
-              <px-icon id="actionIcon" class="accordion__icon actionable--action" icon="[[icons.action]]" on-tap="_onEditIconClick"></px-icon>
+              <dom-repeat items="[[icons.action]]">
+                <template>
+                  <px-icon id="actionIcon" class="accordion__icon actionable--action u-mr--" icon="[[item.icon]]" on-tap="_onIconClick"></px-icon>
+                </template>
+              </dom-repeat>
             </template>
           </template>
         </div>
@@ -98,7 +102,7 @@ Custom property | Description
         /**
          * Icons to be used by the accordion component.
          * You should specify a valid iron icon for 'more' and 'less', at least,
-         * plus an additional icon for 'action' if `showAction` is true.
+         * plus an additional icons for 'action' if `showAction` is true.
          */
         icons: {
           type: Object,
@@ -106,7 +110,7 @@ Custom property | Description
             return {
               'more': 'px-utl:chevron-right',
               'less': 'px-utl:chevron',
-              'action': 'px-utl:edit'
+              'action': [ {icon: 'px-utl:edit'} ]
             };
           }
         },
@@ -227,7 +231,7 @@ Custom property | Description
        * @event px-accordion-opened-state-changed
        */
 
-      _onEditIconClick: function(e) {
+      _onIconClick: function(e) {
         e.preventDefault();
         e.stopPropagation();
         this.fire('px-accordion-action-clicked', e);

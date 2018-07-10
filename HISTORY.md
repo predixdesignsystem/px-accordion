@@ -1,3 +1,8 @@
+v1.1.3
+==================
+* convert icons prop's  action value to array allow for multiple icons
+
+
 v1.1.2
 ==================
 * Fix demo for IE.

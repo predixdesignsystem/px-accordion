@@ -2,7 +2,7 @@
   "name": "px-accordion",
   "author": "General Electric",
   "description": "A Px accordion component",
-  "version": "1.1.2",
+  "version": "1.1.4",
   "private": false,
   "extName": null,
   "repository": {
@@ -12,6 +12,7 @@
   "homepage": "https://www.predix-ui.com/",
   "devDependencies": {
     "browser-sync": "^2.13.0",
+    "ensure-px-license": "^1.0.0",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.0",
     "gulp-babel": "^6.1.2",
@@ -30,5 +31,8 @@
     "stream-combiner2": "^1.1.1",
     "yargs": "^6.0.0"
   },
-  "license": "BSD-3-Clause"
+  "scripts": {
+    "start": "gulp serve"
+  },
+  "license": "Apache-2.0"
 }

@@ -1,3 +1,20 @@
+/**
+ * @license
+ * Copyright (c) 2018, General Electric
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 'use strict';
 const path = require('path');
 const gulp = require('gulp');
@@ -12,6 +29,7 @@ const combiner = require('stream-combiner2');
 const bump = require('gulp-bump');
 const argv = require('yargs').argv;
 const exec = require('child_process').exec;
+const { ensureLicense } = require('ensure-px-license');
 
 const sassOptions = {
   importer: importOnce,
@@ -22,17 +40,16 @@ const sassOptions = {
 };
 
 gulp.task('clean', function() {
-  return gulp.src(['.tmp', 'css'], {
-    read: false
-  }).pipe($.clean());
+  return gulp.src(['.tmp', 'css'], { read: false })
+    .pipe($.clean());
 });
 
-function handleError(err){
+function handleError(err) {
   console.log(err.toString());
   this.emit('end');
 }
 
-function buildCSS(){
+function buildCSS() {
   return combiner.obj([
     $.sass(sassOptions),
     $.autoprefixer({
@@ -48,20 +65,13 @@ gulp.task('sass', function() {
   return gulp.src(['./sass/*.scss'])
     .pipe(buildCSS())
     .pipe(stylemod({
-      moduleId: function(file) {
+      moduleId(file) {
         return path.basename(file.path, path.extname(file.path)) + '-styles';
       }
     }))
+    .pipe(ensureLicense())
     .pipe(gulp.dest('css'))
-    .pipe(browserSync.stream({match: 'css/*.html'}));
-});
-
-gulp.task('generate-api', function (cb) {
-  exec(`node_modules/.bin/polymer analyze ${pkg.name}.html > ${pkg.name}-api.json`, function (err, stdout, stderr) {
-    console.log(stdout);
-    console.log(stderr);
-    cb(err);
-  });
+    .pipe(browserSync.stream({ match: 'css/*.html' }));
 });
 
 gulp.task('watch', function() {
@@ -78,28 +88,46 @@ gulp.task('serve', function() {
     server: ['./', 'bower_components'],
   });
 
+  gulp.watch(['css/*-styles.html', '*.html', '*.js', 'demo/*.html']).on('change', browserSync.reload);
   gulp.watch(['sass/*.scss'], ['sass']);
-  gulp.watch(['css/*-styles.html', '*.html', 'demo/*.html']).on('change', browserSync.reload);
 });
 
-gulp.task('bump:patch', function(){
+gulp.task('bump:patch', function() {
   gulp.src(['./bower.json', './package.json'])
-  .pipe(bump({type:'patch'}))
-  .pipe(gulp.dest('./'));
+    .pipe(bump({ type: 'patch' }))
+    .pipe(gulp.dest('./'));
 });
 
-gulp.task('bump:minor', function(){
+gulp.task('bump:minor', function() {
   gulp.src(['./bower.json', './package.json'])
-  .pipe(bump({type:'minor'}))
-  .pipe(gulp.dest('./'));
+    .pipe(bump({ type: 'minor' }))
+    .pipe(gulp.dest('./'));
 });
 
-gulp.task('bump:major', function(){
+gulp.task('bump:major', function() {
   gulp.src(['./bower.json', './package.json'])
-  .pipe(bump({type:'major'}))
-  .pipe(gulp.dest('./'));
+    .pipe(bump({ type: 'major' }))
+    .pipe(gulp.dest('./'));
+});
+
+gulp.task('license', function() {
+  return gulp.src(['./**/*.{html,js,css,scss}', '!./node_modules/**/*', '!./bower_components?(-1.x)/**/*'])
+    .pipe(ensureLicense())
+    .pipe(gulp.dest('.'));
 });
 
 gulp.task('default', function(callback) {
-  gulpSequence('clean', 'sass', 'generate-api')(callback);
+  gulpSequence('clean', 'sass', 'generate-api', 'license')(callback);
+});
+
+/**
+ * Special task for Polymer component repos. Analyzes the component source code
+ * and generates documentation in `[component-name]-api.json`.
+ */
+gulp.task('generate-api', function (cb) {
+  exec(`node_modules/.bin/polymer analyze ${pkg.name}.html > ${pkg.name}-api.json`, function(err, stdout, stderr) {
+    console.log(stdout);
+    console.log(stderr);
+    cb(err);
+  });
 });

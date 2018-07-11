@@ -58,6 +58,9 @@
 .accordion__body {
   margin: 0;
   overflow: auto;
+  @if $inuit-global-border-box == true {
+    box-sizing: border-box;
+  }
 }
 
 // Trumps

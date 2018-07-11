@@ -71,11 +71,9 @@ Custom property | Description
           <span class="accordion__status">[[status]]</span>
           <template is="dom-if" if="[[!disabled]]">
             <template is="dom-if" if="[[showAction]]">
-              <dom-repeat items="[[icons.action]]">
-                <template>
-                  <px-icon id="actionIcon" class="accordion__icon actionable--action u-mr--" icon="[[item.icon]]" on-tap="_onIconClick"></px-icon>
-                </template>
-              </dom-repeat>
+              <template is="dom-repeat" items="[[icons.action]]">
+                <px-icon id="actionIcon" class="accordion__icon actionable--action u-mr--" icon="[[item.icon]]" on-tap="_onIconClick"></px-icon>
+              </template>
             </template>
           </template>
         </div>

@@ -13,11 +13,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 93,
+              "line": 95,
               "column": 8
             },
             "end": {
-              "line": 95,
+              "line": 97,
               "column": 9
             }
           },
@@ -28,22 +28,22 @@
         {
           "name": "icons",
           "type": "Object",
-          "description": "Icons to be used by the accordion component.\nYou should specify a valid iron icon for 'more' and 'less', at least,\nplus an additional icon for 'action' if `showAction` is true.",
+          "description": "Icons to be used by the accordion component.\nYou should specify a valid iron icon for 'more' and 'less', at least,\nplus an additional icons for 'action' if `showAction` is true.",
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 102,
+              "line": 104,
               "column": 8
             },
             "end": {
-              "line": 111,
+              "line": 113,
               "column": 9
             }
           },
           "metadata": {
             "polymer": {}
           },
-          "defaultValue": "{\"more\":\"px-utl:chevron-right\",\"less\":\"px-utl:chevron\",\"action\":[{\"icon:\"{\"px-utl:edit\"}]}"
+          "defaultValue": "{\"more\":\"px-utl:chevron-right\",\"less\":\"px-utl:chevron\",\"action\":[]}"
         },
         {
           "name": "disabled",
@@ -52,11 +52,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 116,
+              "line": 118,
               "column": 8
             },
             "end": {
-              "line": 120,
+              "line": 122,
               "column": 9
             }
           },
@@ -72,11 +72,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 125,
+              "line": 127,
               "column": 8
             },
             "end": {
-              "line": 128,
+              "line": 130,
               "column": 9
             }
           },
@@ -86,17 +86,37 @@
           "defaultValue": "false"
         },
         {
+          "name": "wrapHeaderText",
+          "type": "boolean",
+          "description": "Flag indicating whether header text should wrap or overflow into an ellipsis",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 135,
+              "column": 8
+            },
+            "end": {
+              "line": 138,
+              "column": 9
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "true"
+        },
+        {
           "name": "status",
           "type": "string",
           "description": "String that will appear in the right hand side of the accordion.",
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 133,
+              "line": 143,
               "column": 8
             },
             "end": {
-              "line": 136,
+              "line": 146,
               "column": 9
             }
           },
@@ -112,11 +132,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 143,
+              "line": 153,
               "column": 8
             },
             "end": {
-              "line": 148,
+              "line": 158,
               "column": 9
             }
           },
@@ -135,11 +155,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 153,
+              "line": 163,
               "column": 8
             },
             "end": {
-              "line": 156,
+              "line": 166,
               "column": 9
             }
           },
@@ -157,11 +177,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 159,
+              "line": 169,
               "column": 6
             },
             "end": {
-              "line": 163,
+              "line": 173,
               "column": 7
             }
           },
@@ -179,16 +199,37 @@
           ]
         },
         {
+          "name": "_wrapHeaderTextClass",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "start": {
+              "line": 175,
+              "column": 6
+            },
+            "end": {
+              "line": 178,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "wrapHeaderText"
+            }
+          ]
+        },
+        {
           "name": "toggle",
           "description": "Shows or hides the accordion content.",
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 168,
+              "line": 183,
               "column": 6
             },
             "end": {
-              "line": 171,
+              "line": 186,
               "column": 7
             }
           },
@@ -201,11 +242,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 180,
+              "line": 195,
               "column": 6
             },
             "end": {
-              "line": 190,
+              "line": 205,
               "column": 7
             }
           },
@@ -224,11 +265,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 212,
+              "line": 227,
               "column": 6
             },
             "end": {
-              "line": 216,
+              "line": 231,
               "column": 7
             }
           },
@@ -245,11 +286,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 229,
+              "line": 244,
               "column": 6
             },
             "end": {
-              "line": 233,
+              "line": 248,
               "column": 7
             }
           },
@@ -271,11 +312,11 @@
       "metadata": {},
       "sourceRange": {
         "start": {
-          "line": 86,
+          "line": 88,
           "column": 12
         },
         "end": {
-          "line": 242,
+          "line": 257,
           "column": 5
         }
       },
@@ -287,11 +328,11 @@
           "description": "The text to place in the header of the accordion",
           "sourceRange": {
             "start": {
-              "line": 93,
+              "line": 95,
               "column": 8
             },
             "end": {
-              "line": 95,
+              "line": 97,
               "column": 9
             }
           },
@@ -300,14 +341,14 @@
         },
         {
           "name": "icons",
-          "description": "Icons to be used by the accordion component.\nYou should specify a valid iron icon for 'more' and 'less', at least,\nplus an additional icon for 'action' if `showAction` is true.",
+          "description": "Icons to be used by the accordion component.\nYou should specify a valid iron icon for 'more' and 'less', at least,\nplus an additional icons for 'action' if `showAction` is true.",
           "sourceRange": {
             "start": {
-              "line": 102,
+              "line": 104,
               "column": 8
             },
             "end": {
-              "line": 111,
+              "line": 113,
               "column": 9
             }
           },
@@ -319,11 +360,11 @@
           "description": "Flag indicating whether the accordion should be disabled.",
           "sourceRange": {
             "start": {
-              "line": 116,
+              "line": 118,
               "column": 8
             },
             "end": {
-              "line": 120,
+              "line": 122,
               "column": 9
             }
           },
@@ -335,11 +376,27 @@
           "description": "Flag indicating whether the 'action' icon should be shown on the right hand side.",
           "sourceRange": {
             "start": {
-              "line": 125,
+              "line": 127,
               "column": 8
             },
             "end": {
-              "line": 128,
+              "line": 130,
+              "column": 9
+            }
+          },
+          "metadata": {},
+          "type": "boolean"
+        },
+        {
+          "name": "wrap-header-text",
+          "description": "Flag indicating whether header text should wrap or overflow into an ellipsis",
+          "sourceRange": {
+            "start": {
+              "line": 135,
+              "column": 8
+            },
+            "end": {
+              "line": 138,
               "column": 9
             }
           },
@@ -351,11 +408,11 @@
           "description": "String that will appear in the right hand side of the accordion.",
           "sourceRange": {
             "start": {
-              "line": 133,
+              "line": 143,
               "column": 8
             },
             "end": {
-              "line": 136,
+              "line": 146,
               "column": 9
             }
           },
@@ -367,11 +424,11 @@
           "description": "If `true` the accordion is opened. If `false` it is closed. Use to\nobserve the user opening/closing the accordion, or set to programatically\nchange the accordion state.",
           "sourceRange": {
             "start": {
-              "line": 143,
+              "line": 153,
               "column": 8
             },
             "end": {
-              "line": 148,
+              "line": 158,
               "column": 9
             }
           },
@@ -422,11 +479,11 @@
           "range": {
             "file": "px-accordion.html",
             "start": {
-              "line": 80,
+              "line": 82,
               "column": 10
             },
             "end": {
-              "line": 80,
+              "line": 82,
               "column": 23
             }
           }

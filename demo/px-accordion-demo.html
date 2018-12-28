@@ -57,10 +57,10 @@ limitations under the License.
       <!-- Component ---------------------------------------------------------->
       <px-demo-component slot="px-demo-component" style="width:100%;">
         <px-accordion-group>
-        <px-accordion header-value="{{props.headerValue.value}}" show-action="{{props.showAction.value}}" status="{{props.status.value}}" icons="{{props.icons.value}}" disabled="{{props.disabled.value}}">
+        <px-accordion header-value="{{props.headerValue.value}}" show-action="{{props.showAction.value}}" status="{{props.status.value}}" icons="{{props.icons.value}}" disabled="{{props.disabled.value}}" wrap-header-text="{{props.wrapHeaderText.value}}">
           Accordion content goes here.
         </px-accordion>
-        <px-accordion header-value="{{props.headerValue.value}}" show-action="{{props.showAction.value}}" status="{{props.status.value}}" icons="{{props.icons.value}}" disabled="{{props.disabled.value}}">
+        <px-accordion header-value="{{props.headerValue.value}}" show-action="{{props.showAction.value}}" status="{{props.status.value}}" icons="{{props.icons.value}}" disabled="{{props.disabled.value}}" wrap-header-text="{{props.wrapHeaderText.value}}">
           Accordion content goes here.
         </px-accordion>
         </px-accordion-group>
@@ -94,60 +94,64 @@ limitations under the License.
         type: Object,
         value: function() {
           return this.demoProps;
-          }
-        },
-
-        configs: {
-          type: Array,
-          value: function() {
-            return [{
-              configName: "Default",
-              configReset: true
-            }]
-          }
         }
       },
 
-      demoProps: {
-
-        icons: {
-          type: Object,
-          defaultValue: {
-            more: "px-utl:chevron-right",
-            less: "px-utl:chevron",
-            action: [ {icon: "px-utl:edit"}, {icon: "px-utl:delete"} ]
-          },
-          inputType: "code:JSON"
-        },
-        headerValue: {
-          type: String,
-          defaultValue: 'Header Caption',
-          inputType: 'text'
-        },
-        status: {
-          type: String,
-          defaultValue: 'Last Updated: 3 Days Ago',
-          inputType: 'text'
-        },
-        disabled: {
-          type: Boolean,
-          defaultValue: false,
-          inputType: 'toggle'
-        },
-        showAction: {
-          type: Boolean,
-          defaultValue: false,
-          inputType: 'toggle'
-        },
-        parentComponent: {
-          type: String,
-          defaultValue: ['<px-accordion-group>','</px-accordion-group>']
+      configs: {
+        type: Array,
+        value: function() {
+          return [{
+            configName: "Default",
+            configReset: true
+          }]
         }
-      },
-      ready: function() {
-        window.addEventListener('px-accordion-action-clicked', function(e) {
-          e.target.status = "Action icon clicked!";
-        });
       }
+    },
+
+    demoProps: {
+      icons: {
+        type: Object,
+        defaultValue: {
+          more: "px-utl:chevron-right",
+          less: "px-utl:chevron",
+          action: [ {icon: "px-utl:edit"}, {icon: "px-utl:delete"} ]
+        },
+        inputType: "code:JSON"
+      },
+      headerValue: {
+        type: String,
+        defaultValue: 'Header Caption',
+        inputType: 'text'
+      },
+      status: {
+        type: String,
+        defaultValue: 'Last Updated: 3 Days Ago',
+        inputType: 'text'
+      },
+      disabled: {
+        type: Boolean,
+        defaultValue: false,
+        inputType: 'toggle'
+      },
+      wrapHeaderText: {
+        type: Boolean,
+        defaultValue: false,
+        inputType: 'toggle'
+      },
+      showAction: {
+        type: Boolean,
+        defaultValue: false,
+        inputType: 'toggle'
+      },
+      parentComponent: {
+        type: String,
+        defaultValue: ['<px-accordion-group>','</px-accordion-group>']
+      }
+    },
+    ready: function() {
+      window.addEventListener('px-accordion-action-clicked', function(e) {
+        e.target.status = "Action icon clicked!";
+      });
+    }
   });
 </script>

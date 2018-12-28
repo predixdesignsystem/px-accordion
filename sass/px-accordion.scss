@@ -39,18 +39,6 @@
   &[disabled] {
     cursor: not-allowed;
   }
-
-  &--nowrap {
-    > .flex {
-      min-width: 0;
-    }
-
-    span#headerValue, .accordion__status {
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap
-    }
-  }
 }
 
 .accordion__expand__collapse {
@@ -61,7 +49,6 @@
   --iron-icon-width: 1rem;
   --iron-icon-height: 1rem;
 }
-
 
 .accordion__status {
   margin-right: 1rem;

@@ -38,6 +38,10 @@ limitations under the License.
           new CustomEvent('WebComponentsReady', {bubbles: true})
         );
       }
+
+      window.addEventListener('px-accordion-content-icon-clicked', (e) => {
+        console.log('px-accordion-content-icon-clicked', e);
+      });
     };
 
     var webComponentsSupported = (
@@ -60,17 +64,29 @@ limitations under the License.
   <!-- Import default Predix Design System theme -->
   <link rel="import" href="../../px-theme/px-theme-styles.html"/>
   <custom-style>
-    <style is="custom-style" include="px-theme-styles"></style>
+    <style is="custom-style" include="px-theme-styles">
+      px-accordion {
+        --px-accordion-content-icon-1: red;
+        --px-accordion-content-icon-2: green;
+        --px-accordion-content-icon-3: blue;
+      }
+    </style>
   </custom-style>
   <!--Import px-accordion component -->
   <link rel="import" href="../px-accordion.html"/>
 </head>
 <body>
   <px-accordion
-      icons='{"more":"px-utl:chevron-right","less":"px-utl:chevron","action":[{"icon":"px-utl:edit"}]}'
-      header-value="Example Accordion"
-      status="Last Updated: 3 Days Ago"
-      show-action>
+    icons='{
+      "more":"px-utl:chevron-right",
+      "less":"px-utl:chevron",
+      "action":[{"icon":"px-utl:edit"}],
+      "contentIcons":[{"icon":"px-utl:failure","id":"contentIcon1"}, {"icon":"px-utl:failure","id":"contentIcon2"}, {"icon":"px-utl:failure","id":"contentIcon3"}]
+      }'
+    header-value="Example Accordion"
+    status="Last Updated: 3 Days Ago"
+    show-content-icons
+    show-action>
     <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus quibusdam, tenetur delectus iste eaque unde vel esse dolore cum nostrum tempore nam optio hic aliquam, ullam aliquid atque ab facere?</span>
   </px-accordion>
 </body>

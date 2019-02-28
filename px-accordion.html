@@ -49,6 +49,9 @@ Custom property | Description
 :----------------|:-------------
 --px-headings-heading-subsection-color | Text color for the accordion header
 --px-headings-heading-subsection-background | Background color for the accordion header
+--px-accordion-content-icon-1 | Custom content icon colour 
+--px-accordion-content-icon-2 | Custom content icon colour 
+--px-accordion-content-icon-3 | Custom content icon colour 
 
 @element px-accordion
 @blurb renders a accordion component
@@ -66,6 +69,15 @@ Custom property | Description
             <px-icon class="accordion__icon actionable--action" icon="[[_expandCollapseIcon]]"></px-icon>
           </template>
           <span id="headerValue">[[headerValue]]</span>
+        </div>
+        <div class="flex flex--middle">
+          <template is="dom-if" if="[[!disabled]]">
+            <template is="dom-if" if="[[showContentIcons]]">
+              <template is="dom-repeat" items="[[icons.contentIcons]]">
+                <px-icon id="[[item.id]]" class="accordion__icon u-mr--" icon="[[item.icon]]" on-tap="_onContentIconClick"></px-icon>
+              </template>
+            </template>
+          </template>
         </div>
         <div class="flex flex--middle">
           <span class="accordion__status">[[status]]</span>
@@ -101,6 +113,8 @@ Custom property | Description
          * Icons to be used by the accordion component.
          * You should specify a valid iron icon for 'more' and 'less', at least,
          * plus an additional icons for 'action' if `showAction` is true.
+         * You also have the option of adding content icons if `showContentIcons` is set to true.
+         * The content icons will appear right aligned in the header between the chevron and action icons.
          */
         icons: {
           type: Object,
@@ -108,7 +122,8 @@ Custom property | Description
             return {
               'more': 'px-utl:chevron-right',
               'less': 'px-utl:chevron',
-              'action': [ {icon: 'px-utl:edit'} ]
+              'action': [ {icon: 'px-utl:edit'} ],
+              'contentIcons': [ {icon: 'px-utl:failure', id: 'contentIcon1'} ]
             };
           }
         },
@@ -126,6 +141,14 @@ Custom property | Description
          * Flag indicating whether the 'action' icon should be shown on the right hand side.
          */
         showAction: {
+          type: Boolean,
+          value: false
+        },
+        
+        /**
+         * Flag indicating whether the 'contentIcons' should be shown.
+         */
+        showContentIcons: {
           type: Boolean,
           value: false
         },
@@ -245,7 +268,7 @@ Custom property | Description
         e.preventDefault();
         e.stopPropagation();
         this.fire('px-accordion-action-clicked', e);
-      }
+      },
       /**
        * Event fired when the accordion action icon is clicked.
        *
@@ -253,6 +276,20 @@ Custom property | Description
        * and e.detail will be a reference to the original DOM tap/click event.
        *
        * @event px-accordion-action-clicked
+       */
+
+      _onContentIconClick: function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        this.fire('px-accordion-content-icon-clicked', e);
+      }
+      /**
+       * Event fired when the accordion content icon is clicked.
+       *
+       * e.target will be a reference to the accordion that was interacted with,
+       * and e.detail will be a reference to the original DOM tap/click event.
+       *
+       * @event px-accordion-content-icon-clicked
        */
     });
   </script>

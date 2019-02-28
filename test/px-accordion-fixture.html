@@ -44,7 +44,12 @@ limitations under the License.
 
     <test-fixture id="AccordionFixture">
       <template>
-        <px-accordion header-value="Header" status="Last Updated Yesterday" show-action icons='{"more":"px-utl:chevron-right","less":"px-utl:chevron","action":[{"icon":"px-utl:edit"},{"icon":"px-utl:delete"}]}'>
+        <px-accordion header-value="Header" status="Last Updated Yesterday" show-content-icons show-action icons='{
+          "more":"px-utl:chevron-right",
+          "less":"px-utl:chevron",
+          "action":[{"icon":"px-utl:edit"},{"icon":"px-utl:delete"}],
+          "contentIcons":[{"icon":"px-utl:failure","id":"contentIcon1"}, {"icon":"px-utl:failure","id":"contentIcon2"}, {"icon":"px-utl:failure","id":"contentIcon3"}]
+        }'>
           <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</span>
         </px-accordion>
       </template>

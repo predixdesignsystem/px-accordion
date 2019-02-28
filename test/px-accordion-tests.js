@@ -105,6 +105,20 @@ describe('px-accordion', () => {
       done();
     }, 200);
   });
+
+
+  it('fires an event when a content icon is clicked', (done) => {
+    const icon = Polymer.dom(accordion.root).querySelector('#contentIcon1');
+    const eventFunc = sinon.spy();
+    accordion.addEventListener('px-accordion-content-icon-clicked', eventFunc);
+
+    icon.click();
+
+    setTimeout(() => {
+      assert(eventFunc.calledOnce, 'px-accordion-content-icon-clicked event should be fired once');
+      done();
+    }, 200);
+  });
 });
 
 describe('px-accordion [disabled]', () => {

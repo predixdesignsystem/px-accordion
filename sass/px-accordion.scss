@@ -22,6 +22,7 @@
 @import "px-normalize-design/_generic.normalize.scss";
 @import "px-box-sizing-design/_generic.box-sizing.scss";
 @import "px-helpers-design/_generic.helpers.scss";
+@import "px-colors-design/_settings.colors.scss";
 
 // Base
 @import "px-flexbox-design/_base.flexbox.scss";
@@ -50,6 +51,23 @@
       text-overflow: ellipsis;
       white-space: nowrap
     }
+  }
+
+  .flex--middle:nth-child(2) {
+    margin-left: auto;
+
+    px-icon:nth-child(1) {
+      color: var(--px-accordion-content-icon-1, $gray15);
+    }
+
+    px-icon:nth-child(2) {
+      color: var(--px-accordion-content-icon-2, $gray15);
+    }
+
+    px-icon:nth-child(3) {
+      color: var(--px-accordion-content-icon-3, $gray15);
+    }
+
   }
 }
 
